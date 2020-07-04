@@ -1,7 +1,9 @@
 {
   "scripts": {
+    "build": "lerna run build --stream",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,vue,json,md,css}\"",
     "lint": "lerna run lint --stream",
+    "postinstall": "lerna bootstrap",
     "test": "lerna run test --stream",
     "watch": "lerna run watch --stream --no-sort"
   },

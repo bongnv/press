@@ -25,6 +25,7 @@
     "url": "git+https://github.com/bongnv/press.git"
   },
   "scripts": {
+    "build": "tsc",
     "lint": "eslint --fix --ext=ts --cache .",
     "test": "jest",
     "watch": "tsc -w"

@@ -1,5 +1,5 @@
 function press(argv: any) {
   console.log("running", argv);
-    // TODO
+  // TODO
 }
 export = press;

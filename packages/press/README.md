@@ -1,6 +1,6 @@
 # `@bongnv/press`
 
-> TODO: description
+`press` is yet another static sites generator powered by Markdown, VueJS and Webpack.
 
 ## Usage
 

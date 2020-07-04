@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "lint": "lerna run lint --stream",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,vue,json,md,css}\"",
+    "lint": "lerna run lint --stream",
+    "test": "lerna run test --stream",
     "watch": "lerna run watch --stream --no-sort"
   },
   "private": true,

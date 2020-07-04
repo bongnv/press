@@ -1,5 +1,5 @@
 import yargs from "yargs/yargs";
-import press from "./press";
+import { dev, build } from "./press";
 
 function cli(cwd?: string) {
   const parser = yargs(undefined, cwd);
@@ -15,7 +15,7 @@ function cli(cwd?: string) {
         // TODO: options
       });
     },
-    (argv) => press(argv),
+    (argv) => dev(argv),
   );
 
   parser.command(
@@ -26,7 +26,7 @@ function cli(cwd?: string) {
         // TODO: options
       });
     },
-    (argv) => press(argv),
+    (argv) => build(argv),
   );
 
   parser.demandCommand(1, "You need at least one command").help();

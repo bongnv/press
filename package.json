@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "watch": "lerna run watch --stream --no-sort"
+  },
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "name": "press"
+}

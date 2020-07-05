@@ -74,6 +74,7 @@ Object {
     DefinePlugin {
       "definitions": Object {
         "process.env.NODE_ENV": "\\"development\\"",
+        "process.env.VUE_ENV": "\\"client\\"",
       },
     },
     VueSSRClientPlugin {
@@ -81,11 +82,95 @@ Object {
         "filename": "vue-ssr-client-manifest.json",
       },
     },
+  ],
+}
+`;
+
+exports[`Core should apply configWebpack properly 2`] = `
+Object {
+  "entry": Object {
+    "app": Array [
+      "/entry-server.js",
+    ],
+  },
+  "externals": [Function],
+  "mode": "development",
+  "module": Object {
+    "rules": Array [
+      Object {
+        "test": /\\\\\\.vue\\$/,
+        "use": Array [
+          Object {
+            "loader": "vue-loader",
+          },
+        ],
+      },
+      Object {
+        "test": /\\\\\\.css\\$/,
+        "use": Array [
+          Object {
+            "loader": "mini-css-extract-plugin-loader",
+          },
+          Object {
+            "loader": "css-loader",
+            "options": Object {
+              "importLoaders": 1,
+            },
+          },
+          Object {
+            "loader": "postcss-loader",
+          },
+        ],
+      },
+    ],
+  },
+  "node": Object {
+    "setImmediate": false,
+  },
+  "optimization": Object {
+    "minimize": false,
+  },
+  "output": Object {
+    "libraryTarget": "commonjs2",
+    "path": "/.press/server",
+  },
+  "plugins": Array [
+    VueLoaderPlugin {},
+    MiniCssExtractPlugin {
+      "apply": [MockFunction],
+      "getCssChunkObject": [MockFunction],
+      "renderContentAsset": [MockFunction],
+    },
+    CleanWebpackPlugin {
+      "apply": [Function],
+      "cleanAfterEveryBuildPatterns": Array [],
+      "cleanOnceBeforeBuildPatterns": Array [
+        "**/*",
+      ],
+      "cleanStaleWebpackAssets": false,
+      "currentAssets": Array [],
+      "dangerouslyAllowCleanPatternsOutsideProject": false,
+      "dry": false,
+      "handleDone": [Function],
+      "handleInitial": [Function],
+      "initialClean": false,
+      "outputPath": "",
+      "protectWebpackAssets": true,
+      "removeFiles": [Function],
+      "verbose": false,
+    },
     DefinePlugin {
       "definitions": Object {
-        "process.env.VUE_ENV": "\\"client\\"",
+        "process.env.NODE_ENV": "\\"development\\"",
+        "process.env.VUE_ENV": "\\"server\\"",
+      },
+    },
+    VueSSRServerPlugin {
+      "options": Object {
+        "filename": "vue-ssr-server-bundle.json",
       },
     },
   ],
+  "target": "node",
 }
 `;

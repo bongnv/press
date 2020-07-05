@@ -1,18 +1,13 @@
-import { loadConfig } from "./loadConfig";
-import bundleClient from "./bundleClient";
-import generateSites from "./generateSites";
-import startDevServer from "./startDevServer";
+import { loadConfig } from "./load-config";
+import { Execution } from "./execution";
 
-export function build(argv: any) {
+export async function build(argv: any) {
   const config = loadConfig();
-  bundleClient(config);
-  generateSites(config);
-  console.log("running build", argv);
+  const execution = new Execution(config);
+  await execution.execBuild();
 }
 
 export function dev(argv: any) {
   const config = loadConfig();
-  bundleClient(config);
-  startDevServer(config);
   console.log("running dev", argv);
 }

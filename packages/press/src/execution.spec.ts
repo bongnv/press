@@ -1,4 +1,5 @@
 import type { Config } from "./load-config";
+import { defaultConfig } from "./load-config";
 import { Core } from "./plugin-core";
 import { Execution } from "./execution";
 
@@ -11,12 +12,7 @@ beforeEach(() => {
 
 test("execBuild should run properly", () => {
   const mockCore = <jest.Mock<Core>>(Core as unknown);
-  const config: Config = {
-    baseDir: "/",
-    outputDir: "/dist",
-    publicPath: "/",
-    isProd: false,
-  };
+  const config: Config = defaultConfig();
 
   const execution = new Execution(config);
   const spyBuildPromise = jest.spyOn(execution.commands.build, "promise");

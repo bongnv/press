@@ -1,7 +1,8 @@
 import yargs from "yargs/yargs";
+import { Argv } from "yargs";
 import { dev, build } from "./press";
 
-function cli(cwd?: string) {
+function cli(cwd?: string): Argv {
   const parser = yargs(undefined, cwd);
 
   parser.alias("h", "help");

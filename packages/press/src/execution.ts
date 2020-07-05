@@ -28,6 +28,7 @@ export class Execution {
   hooks: ExecutionHooks;
 
   clientWebpackConfig: WebpackConfig;
+  serverWebpackConfig: WebpackConfig;
 
   constructor(config: Config) {
     this.config = config;
@@ -47,9 +48,10 @@ export class Execution {
     };
 
     this.clientWebpackConfig = new WebpackConfig();
+    this.serverWebpackConfig = new WebpackConfig();
   }
 
-  async execBuild() {
+  async execBuild(): Promise<void> {
     this._applyPlugins();
     await this.commands.build.promise(this);
     await this.hooks.prepare.promise(this);

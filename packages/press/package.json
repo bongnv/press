@@ -29,12 +29,14 @@
     "lint": "eslint --fix --ext=ts --cache .",
     "test": "jest",
     "test:clearCache": "jest --clearCache",
-    "test:updateSnapshot": "jest -u",
+    "test:updateSnapshots": "jest -u",
     "watch": "tsc -w"
   },
   "dependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.6.0",
+    "fs-extra": "^9.0.1",
+    "html-minifier": "^4.0.0",
     "mini-css-extract-plugin": "^0.9.0",
     "postcss-loader": "^3.0.0",
     "tapable": "^1.1.3",
@@ -53,6 +55,8 @@
     "url": "https://github.com/bongnv/press/issues"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.1",
+    "@types/html-minifier": "^4.0.0",
     "@types/jest": "^26.0.3",
     "@types/mini-css-extract-plugin": "^0.9.1",
     "@types/tapable": "^1.0.6",

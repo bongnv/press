@@ -5,6 +5,7 @@
     "lint": "lerna run lint --stream",
     "postinstall": "lerna bootstrap",
     "test": "lerna run test --stream",
+    "test:updateSnapshots": "lerna run test:updateSnapshots --stream",
     "watch": "lerna run watch --stream --no-sort"
   },
   "private": true,

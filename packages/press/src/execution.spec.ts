@@ -1,9 +1,9 @@
 import type { Config } from "./load-config";
 import { defaultConfig } from "./load-config";
-import { Core } from "./plugin-core";
+import { Core } from "./plugins/core";
 import { Execution } from "./execution";
 
-jest.mock("./plugin-core");
+jest.mock("./plugins/core");
 
 beforeEach(() => {
   const mockCore = <jest.Mock<Core>>(Core as unknown);

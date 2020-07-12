@@ -1,6 +1,6 @@
 import type WebpackConfig from "webpack-chain";
-import type { Execution } from "./execution";
-import type { Config } from "./load-config";
+import type { Execution } from "../execution";
+import type { Config } from "../load-config";
 
 import path from "path";
 import webpack from "webpack";
@@ -11,12 +11,13 @@ import VueSSRClientPlugin from "vue-server-renderer/client-plugin";
 import VueServerBundlePlugin from "vue-server-renderer/server-plugin";
 import nodeExternals from "webpack-node-externals";
 
-const PLUGIN_NAME = "PressCore";
+const PLUGIN_NAME = "Core";
 
 export class Core {
   vueAppDir: string;
+
   constructor() {
-    this.vueAppDir = path.resolve(__dirname, "../vue-app");
+    this.vueAppDir = path.resolve(__dirname, "../../vue-app");
   }
 
   apply({ commands, hooks }: Execution): void {

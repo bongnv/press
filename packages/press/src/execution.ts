@@ -3,7 +3,7 @@ import { AsyncParallelHook, AsyncSeriesHook } from "tapable";
 import WebpackConfig from "webpack-chain";
 
 import type { Config } from "./load-config";
-import { Core } from "./plugin-core";
+import { Core } from "./plugins/core";
 
 interface Plugin {
   // TODO: we may support async apply
@@ -30,8 +30,11 @@ export class Execution {
   clientWebpackConfig: WebpackConfig;
   serverWebpackConfig: WebpackConfig;
 
+  urlsToRender: string[];
+
   constructor(config: Config) {
     this.config = config;
+    this.urlsToRender = [];
 
     // setup hooks
     const params = ["execution"];

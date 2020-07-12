@@ -1,4 +1,5 @@
 import path from "path";
+import type { Options } from "html-minifier";
 
 export interface Config {
   baseDir: string;
@@ -7,6 +8,7 @@ export interface Config {
   publicPath: string;
   temporaryPath: string;
   serverPath: string;
+  htmlMinifierOptions?: Options;
 }
 
 export function defaultConfig(projectDir?: string): Config {

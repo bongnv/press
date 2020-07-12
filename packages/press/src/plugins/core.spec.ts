@@ -1,9 +1,9 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-import type { Config } from "./load-config";
-import { defaultConfig } from "./load-config";
-import { Core } from "./plugin-core";
-import { Execution } from "./execution";
+import type { Config } from "../load-config";
+import { defaultConfig } from "../load-config";
+import { Core } from "./core";
+import { Execution } from "../execution";
 
 jest.mock("mini-css-extract-plugin");
 

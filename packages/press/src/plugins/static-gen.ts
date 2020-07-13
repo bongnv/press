@@ -11,7 +11,7 @@ const PLUGIN_NAME = "StaticGen";
 type Renderer = (url: string) => Promise<string>;
 
 export class StaticGen {
-  templateFile: string;
+  private templateFile: string;
 
   constructor() {
     this.templateFile = path.resolve(__dirname, "../../vue-app/index.html");

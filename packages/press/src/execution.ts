@@ -4,6 +4,8 @@ import WebpackConfig from "webpack-chain";
 
 import type { Config } from "./load-config";
 import { Core } from "./plugins/core";
+import { DevServer } from "./plugins/dev-server";
+import { StaticGen } from "./plugins/static-gen";
 
 interface Plugin {
   // TODO: we may support async apply
@@ -63,8 +65,16 @@ export class Execution {
     await this.hooks.generate.promise(this);
   }
 
+  async execDev(): Promise<void> {
+    this._applyPlugins();
+    await this.commands.dev.promise(this);
+    await this.hooks.prepare.promise(this);
+    await this.hooks.configWebpack.promise(this);
+    await this.hooks.bundle.promise(this);
+  }
+
   private _applyPlugins(plugins: Plugin[] = []) {
-    plugins.unshift(new Core());
+    plugins.unshift(new Core(), new DevServer(), new StaticGen());
     for (const plugin of plugins) {
       plugin.apply(this);
     }

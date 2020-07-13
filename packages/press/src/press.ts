@@ -8,7 +8,9 @@ export async function build(argv: any): Promise<void> {
   await execution.execBuild();
 }
 
-export function dev(argv: any) {
-  const config = loadConfig();
+export async function dev(argv: any) {
   console.log("running dev", argv);
+  const config = loadConfig();
+  const execution = new Execution(config);
+  await execution.execDev();
 }

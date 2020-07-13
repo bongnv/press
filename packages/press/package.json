@@ -48,6 +48,7 @@
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0",
     "webpack-chain": "^6.5.0",
+    "webpack-dev-server": "^3.11.0",
     "webpack-node-externals": "^1.7.2",
     "yargs": "^15.4.0"
   },
@@ -60,6 +61,7 @@
     "@types/jest": "^26.0.3",
     "@types/mini-css-extract-plugin": "^0.9.1",
     "@types/tapable": "^1.0.6",
+    "@types/webpack-dev-server": "^3.11.0",
     "@types/webpack-node-externals": "^1.7.1",
     "@types/yargs": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^3.5.0",

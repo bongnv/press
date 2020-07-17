@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DevServer should apply configWebpack hooks properly 1`] = `
+Object {
+  "plugins": Array [
+    HtmlWebpackPlugin {
+      "assetJson": undefined,
+      "childCompilerHash": undefined,
+      "hash": undefined,
+      "options": Object {
+        "base": false,
+        "cache": true,
+        "chunks": "all",
+        "chunksSortMode": "auto",
+        "compile": true,
+        "excludeChunks": Array [],
+        "favicon": false,
+        "filename": "index.html",
+        "hash": false,
+        "inject": "body",
+        "meta": Object {},
+        "minify": "auto",
+        "scriptLoading": "blocking",
+        "showErrors": true,
+        "template": "/vue-app/index.dev.html",
+        "templateContent": false,
+        "templateParameters": [Function],
+        "title": "Webpack App",
+        "xhtml": false,
+      },
+      "version": 4,
+    },
+  ],
+}
+`;

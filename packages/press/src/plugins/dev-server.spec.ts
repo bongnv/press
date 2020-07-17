@@ -36,3 +36,14 @@ test("DevServer should apply bundle hooks properly", async () => {
   expect(mockWebpackDevServer).toHaveBeenCalledTimes(1);
   expect(mockListen).toHaveBeenCalledTimes(1);
 });
+
+test("DevServer should apply configWebpack hooks properly", async () => {
+  const plugin = new DevServer();
+  plugin.vueAppDir = "/vue-app";
+  const config = defaultConfig("/");
+  const execution = new Execution(config);
+  plugin.apply(execution);
+  await execution.commands.dev.promise(execution);
+  await execution.hooks.configWebpack.promise(execution);
+  expect(execution.clientWebpackConfig.toConfig()).toMatchSnapshot();
+});

@@ -41,11 +41,8 @@ export class Core {
     });
   }
 
-  private applyBaseConfig(
-    isServer: boolean,
-    isProd: boolean,
-    webpackConfig: WebpackConfig,
-  ) {
+  private applyBaseConfig(config: Config, webpackConfig: WebpackConfig) {
+    const { isProd, enhancers } = config;
     webpackConfig.mode(isProd ? "production" : "development");
 
     webpackConfig.module
@@ -70,6 +67,15 @@ export class Core {
       .loader("postcss-loader")
       .end();
 
+    webpackConfig.module
+      .rule("compile-enhancers")
+      .test(path.join(this.vueAppDir, "enhancers.js"))
+      .use("val-loader")
+      .loader("val-loader")
+      .options({
+        enhancers: enhancers,
+      });
+
     webpackConfig.plugin("vue-loader").use(new VueLoaderPlugin());
 
     webpackConfig.plugin("mini-css-extract").use(
@@ -90,7 +96,6 @@ export class Core {
     webpackConfig.plugin("define").use(
       new webpack.DefinePlugin({
         "process.env.NODE_ENV": isProd ? '"production"' : '"development"',
-        "process.env.VUE_ENV": isServer ? '"server"' : '"client"',
       }),
     );
   }
@@ -98,7 +103,7 @@ export class Core {
   private applyClientConfig(config: Config, webpackConfig: WebpackConfig) {
     const { isProd } = config;
 
-    this.applyBaseConfig(false, isProd, webpackConfig);
+    this.applyBaseConfig(config, webpackConfig);
 
     webpackConfig
       .entry("app")
@@ -111,12 +116,17 @@ export class Core {
       .chunkFilename(isProd ? "[name].[contenthash].js" : "[name].js");
 
     webpackConfig.plugin("vue-ssr-client").use(new VueSSRClientPlugin());
+    webpackConfig.plugin("define-vue-end").use(
+      new webpack.DefinePlugin({
+        "process.env.VUE_ENV": "client",
+      }),
+    );
   }
 
   private applyServerConfig(config: Config, webpackConfig: WebpackConfig) {
-    const { isProd, serverPath } = config;
+    const { serverPath } = config;
 
-    this.applyBaseConfig(true, isProd, webpackConfig);
+    this.applyBaseConfig(config, webpackConfig);
 
     webpackConfig
       .target("node")
@@ -132,6 +142,12 @@ export class Core {
       nodeExternals({
         // do not externalize CSS files in case we need to import it from a dep
         whitelist: /\.css$/,
+      }),
+    );
+
+    webpackConfig.plugin("define-vue-end").use(
+      new webpack.DefinePlugin({
+        "process.env.VUE_ENV": "server",
       }),
     );
   }

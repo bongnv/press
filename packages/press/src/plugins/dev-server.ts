@@ -33,11 +33,11 @@ export class DevServer {
   }
 
   private configWebpack(webpackConfig: WebpackConfig) {
-    webpackConfig
-      .plugin("html-webpack-plugin")
-      .use(new HTMLWebpackPlugin({
+    webpackConfig.plugin("html-webpack-plugin").use(
+      new HTMLWebpackPlugin({
         template: path.join(this.vueAppDir, "index.dev.html"),
-      }))
+      }),
+    );
   }
 
   private startDevServer(webpackConfig: WebpackConfig) {

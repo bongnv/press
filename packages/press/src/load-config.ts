@@ -9,6 +9,7 @@ export interface Config {
   temporaryPath: string;
   serverPath: string;
   htmlMinifierOptions?: Options;
+  enhancers: string[];
 }
 
 export function defaultConfig(projectDir?: string): Config {
@@ -23,6 +24,7 @@ export function defaultConfig(projectDir?: string): Config {
     publicPath: "/",
     temporaryPath,
     serverPath,
+    enhancers: [],
   };
 }
 

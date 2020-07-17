@@ -13,7 +13,7 @@ test("Core should apply configWebpack properly", async () => {
   const config: Config = defaultConfig("/");
 
   const corePlugin = new Core();
-  corePlugin.vueAppDir = "/";
+  corePlugin.vueAppDir = "/vue-app";
   const execution = new Execution(config);
   corePlugin.apply(execution);
   await execution.hooks.configWebpack.promise(execution);

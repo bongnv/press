@@ -4,7 +4,7 @@ exports[`Core should apply configWebpack properly 1`] = `
 Object {
   "entry": Object {
     "app": Array [
-      "/entry-client.js",
+      "/vue-app/entry-client.js",
     ],
   },
   "mode": "development",
@@ -32,6 +32,17 @@ Object {
           },
           Object {
             "loader": "postcss-loader",
+          },
+        ],
+      },
+      Object {
+        "test": "/vue-app/enhancers.js",
+        "use": Array [
+          Object {
+            "loader": "val-loader",
+            "options": Object {
+              "enhancers": Array [],
+            },
           },
         ],
       },
@@ -74,12 +85,16 @@ Object {
     DefinePlugin {
       "definitions": Object {
         "process.env.NODE_ENV": "\\"development\\"",
-        "process.env.VUE_ENV": "\\"client\\"",
       },
     },
     VueSSRClientPlugin {
       "options": Object {
         "filename": "vue-ssr-client-manifest.json",
+      },
+    },
+    DefinePlugin {
+      "definitions": Object {
+        "process.env.VUE_ENV": "client",
       },
     },
   ],
@@ -90,7 +105,7 @@ exports[`Core should apply configWebpack properly 2`] = `
 Object {
   "entry": Object {
     "app": Array [
-      "/entry-server.js",
+      "/vue-app/entry-server.js",
     ],
   },
   "externals": [Function],
@@ -119,6 +134,17 @@ Object {
           },
           Object {
             "loader": "postcss-loader",
+          },
+        ],
+      },
+      Object {
+        "test": "/vue-app/enhancers.js",
+        "use": Array [
+          Object {
+            "loader": "val-loader",
+            "options": Object {
+              "enhancers": Array [],
+            },
           },
         ],
       },
@@ -162,12 +188,16 @@ Object {
     DefinePlugin {
       "definitions": Object {
         "process.env.NODE_ENV": "\\"development\\"",
-        "process.env.VUE_ENV": "\\"server\\"",
       },
     },
     VueSSRServerPlugin {
       "options": Object {
         "filename": "vue-ssr-server-bundle.json",
+      },
+    },
+    DefinePlugin {
+      "definitions": Object {
+        "process.env.VUE_ENV": "server",
       },
     },
   ],

@@ -1,5 +1,7 @@
-import WebpackDevServer from "webpack-dev-server";
+import HTMLWebpackPlugin from "html-webpack-plugin";
+import path from "path";
 import webpack from "webpack";
+import WebpackDevServer from "webpack-dev-server";
 import type WebpackConfig from "webpack-chain";
 
 import type { Execution } from "../execution";
@@ -8,6 +10,11 @@ const PLUGIN_NAME = "DevServer";
 
 export class DevServer {
   devServer?: WebpackDevServer;
+  vueAppDir: string;
+
+  constructor() {
+    this.vueAppDir = path.join(__dirname, "../../vue-app");
+  }
 
   apply({ commands }: Execution): void {
     commands.dev.tap(PLUGIN_NAME, ({ hooks }: Execution) => {
@@ -26,7 +33,11 @@ export class DevServer {
   }
 
   private configWebpack(webpackConfig: WebpackConfig) {
-    // TODO
+    webpackConfig
+      .plugin("html-webpack-plugin")
+      .use(new HTMLWebpackPlugin({
+        template: path.join(this.vueAppDir, "index.dev.html"),
+      }))
   }
 
   private startDevServer(webpackConfig: WebpackConfig) {

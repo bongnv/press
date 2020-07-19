@@ -18,10 +18,10 @@ interface Context {
 }
 
 function applyBaseConfig(
-  { vueAppDir, execution }: Context,
+  { execution }: Context,
   webpackConfig: WebpackConfig,
 ) {
-  const { isProd, enhancers } = execution;
+  const { isProd } = execution;
   webpackConfig.mode(isProd ? "production" : "development");
 
   webpackConfig.module
@@ -45,15 +45,6 @@ function applyBaseConfig(
     .use("postcss-loader")
     .loader("postcss-loader")
     .end();
-
-  webpackConfig.module
-    .rule("compile-enhancers")
-    .test(path.join(vueAppDir, "enhancers.js"))
-    .use("val-loader")
-    .loader("val-loader")
-    .options({
-      enhancers: enhancers,
-    });
 
   webpackConfig.plugin("vue-loader").use(new VueLoaderPlugin());
 

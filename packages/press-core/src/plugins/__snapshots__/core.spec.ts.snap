@@ -35,17 +35,6 @@ Object {
           },
         ],
       },
-      Object {
-        "test": "/vue-app/enhancers.js",
-        "use": Array [
-          Object {
-            "loader": "val-loader",
-            "options": Object {
-              "enhancers": Array [],
-            },
-          },
-        ],
-      },
     ],
   },
   "node": Object {
@@ -134,17 +123,6 @@ Object {
           },
           Object {
             "loader": "postcss-loader",
-          },
-        ],
-      },
-      Object {
-        "test": "/vue-app/enhancers.js",
-        "use": Array [
-          Object {
-            "loader": "val-loader",
-            "options": Object {
-              "enhancers": Array [],
-            },
           },
         ],
       },

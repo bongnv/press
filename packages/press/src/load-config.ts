@@ -3,7 +3,7 @@ import vuePagesPlugin from "@bongnv/press-plugin-vue-pages";
 
 export function loadConfig(argv: any): Config {
   return {
-    baseDir: "/",
+    baseDir: process.cwd(),
     plugins: [vuePagesPlugin],
   };
 }

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import enhancers from "./enhancers";
+import enhancers from "./enhancers-loader";
 
 Vue.use(Router);
 
@@ -11,7 +11,7 @@ export default () => {
     if (enhancer.enhanceRoutes) {
       enhancer.enhanceRoutes(routes);
     }
-  })
+  });
 
   const router = new Router({
     mode: "history",

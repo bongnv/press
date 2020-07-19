@@ -3,6 +3,10 @@ import path from "path";
 import enhancersPlugin from "./enhancers";
 import { Execution } from "../execution";
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 test("Enhancers should apply configWebpack properly", async () => {
   jest
     .spyOn(path, "resolve")

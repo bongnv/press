@@ -5,7 +5,7 @@ Object {
   "module": Object {
     "rules": Array [
       Object {
-        "test": "/enhancers/enhancers.js",
+        "test": "/vue-app/enhancers-loader.js",
         "use": Array [
           Object {
             "loader": "val-loader",
@@ -25,7 +25,7 @@ Object {
   "module": Object {
     "rules": Array [
       Object {
-        "test": "/enhancers/enhancers.js",
+        "test": "/vue-app/enhancers-loader.js",
         "use": Array [
           Object {
             "loader": "val-loader",

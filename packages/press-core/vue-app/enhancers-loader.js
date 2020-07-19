@@ -1,4 +1,4 @@
-module.exports = (options) => {
+module.exports = (options = {}) => {
   const enhancers = options.enhancers || [];
   const importsCodes = enhancers
     .map((enhancer, index) => `import enhancer${index} from "${enhancer}";`)

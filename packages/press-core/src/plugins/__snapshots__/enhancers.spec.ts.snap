@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Enhancers should apply configWebpack properly 1`] = `
+Object {
+  "module": Object {
+    "rules": Array [
+      Object {
+        "test": "/vue-app/enhancers.js",
+        "use": Array [
+          Object {
+            "loader": "val-loader",
+            "options": Object {
+              "enhancers": Array [],
+            },
+          },
+        ],
+      },
+    ],
+  },
+}
+`;
+
+exports[`Enhancers should apply configWebpack properly 2`] = `
+Object {
+  "module": Object {
+    "rules": Array [
+      Object {
+        "test": "/vue-app/enhancers.js",
+        "use": Array [
+          Object {
+            "loader": "val-loader",
+            "options": Object {
+              "enhancers": Array [],
+            },
+          },
+        ],
+      },
+    ],
+  },
+}
+`;

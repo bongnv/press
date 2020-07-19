@@ -1,16 +1,21 @@
+import { mocked } from "ts-jest/utils";
 import cli from "./cli";
-import { dev as mockDev, build as mockBuild } from "./press";
+import { dev, build } from "./press";
 
 jest.mock("./press");
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
 test("dev command should call dev function", () => {
   cli().parse("dev");
-  expect(mockDev).toHaveBeenCalledTimes(1);
+  expect(mocked(dev)).toHaveBeenCalledTimes(1);
 });
 
 test("build command should call build function", () => {
   cli().parse("build");
-  expect(mockBuild).toHaveBeenCalledTimes(1);
+  expect(mocked(build)).toHaveBeenCalledTimes(1);
 });
 
 test("none command should call no function", () => {

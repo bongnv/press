@@ -1,9 +1,9 @@
+import path from "path";
 import { mocked } from "ts-jest/utils";
 import WebpackDevServer from "webpack-dev-server";
 
-import { DevServer } from "./dev-server";
 import { Execution } from "../execution";
-import { defaultConfig } from "../load-config";
+import devServerPlugin from "./dev-server";
 
 jest.mock("webpack-dev-server");
 
@@ -26,10 +26,8 @@ test("DevServer should apply bundle hooks properly", async () => {
     },
   );
 
-  const plugin = new DevServer();
-  const config = defaultConfig();
-  const execution = new Execution(config);
-  plugin.apply(execution);
+  const execution = new Execution({ baseDir: "/" });
+  devServerPlugin(execution);
   await execution.commands.dev.promise(execution);
   await execution.hooks.bundle.promise(execution);
 
@@ -38,11 +36,9 @@ test("DevServer should apply bundle hooks properly", async () => {
 });
 
 test("DevServer should apply configWebpack hooks properly", async () => {
-  const plugin = new DevServer();
-  plugin.vueAppDir = "/vue-app";
-  const config = defaultConfig("/");
-  const execution = new Execution(config);
-  plugin.apply(execution);
+  jest.spyOn(path, "resolve").mockImplementationOnce(() => "/vue-app");
+  const execution = new Execution({ baseDir: "/" });
+  devServerPlugin(execution);
   await execution.commands.dev.promise(execution);
   await execution.hooks.configWebpack.promise(execution);
   expect(execution.clientWebpackConfig.toConfig()).toMatchSnapshot();

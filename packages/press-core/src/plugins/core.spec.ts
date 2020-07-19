@@ -1,21 +1,20 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from "path";
 
-import type { Config } from "../load-config";
-import { defaultConfig } from "../load-config";
-import { Core } from "./core";
+import corePlugin from "./core";
 import { Execution } from "../execution";
 
 jest.mock("mini-css-extract-plugin");
 
 test("Core should apply configWebpack properly", async () => {
   MiniCssExtractPlugin.loader = "mini-css-extract-plugin-loader";
+  jest.spyOn(path, "resolve").mockImplementationOnce(() => "/vue-app");
 
-  const config: Config = defaultConfig("/");
+  const execution = new Execution({
+    baseDir: "/",
+  });
 
-  const corePlugin = new Core();
-  corePlugin.vueAppDir = "/vue-app";
-  const execution = new Execution(config);
-  corePlugin.apply(execution);
+  corePlugin(execution);
   await execution.hooks.configWebpack.promise(execution);
   expect(execution.clientWebpackConfig.toConfig()).toMatchSnapshot();
   expect(execution.serverWebpackConfig.toConfig()).toMatchSnapshot();

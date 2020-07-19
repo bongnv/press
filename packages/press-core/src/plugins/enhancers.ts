@@ -22,7 +22,7 @@ function configWebpack({ vueAppDir, enhancers, webpackConfig }: Params) {
     });
 }
 
-export default function ({ hooks }: Execution) {
+export default function ({ hooks }: Execution): void {
   const vueAppDir = path.resolve(__dirname, "../../enhancers");
 
   hooks.configWebpack.tap(
@@ -36,7 +36,7 @@ export default function ({ hooks }: Execution) {
       configWebpack({
         vueAppDir,
         enhancers,
-        webpackConfig: serverWebpackConfig
+        webpackConfig: serverWebpackConfig,
       });
     },
   );

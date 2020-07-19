@@ -4,7 +4,9 @@ import enhancersPlugin from "./enhancers";
 import { Execution } from "../execution";
 
 test("Enhancers should apply configWebpack properly", async () => {
-  jest.spyOn(path, "resolve").mockImplementationOnce(() => "/vue-app");
+  jest
+    .spyOn(path, "resolve")
+    .mockImplementationOnce((_, localPath) => path.join("/", localPath));
 
   const execution = new Execution({
     baseDir: "/",

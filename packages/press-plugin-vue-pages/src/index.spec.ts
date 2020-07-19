@@ -1,13 +1,9 @@
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
+import { Execution } from "@bongnv/press-core";
 
-import corePlugin from "./core";
-import { Execution } from "../execution";
+import vuePagesPlugin from "./index";
 
-jest.mock("mini-css-extract-plugin");
-
-test("Core should apply configWebpack properly", async () => {
-  MiniCssExtractPlugin.loader = "mini-css-extract-plugin-loader";
+test("Enhancers should apply configWebpack properly", async () => {
   jest
     .spyOn(path, "resolve")
     .mockImplementationOnce((_, localPath) => path.join("/", localPath));
@@ -16,7 +12,7 @@ test("Core should apply configWebpack properly", async () => {
     baseDir: "/",
   });
 
-  corePlugin(execution);
+  vuePagesPlugin(execution);
   await execution.hooks.configWebpack.promise(execution);
   expect(execution.clientWebpackConfig.toConfig()).toMatchSnapshot();
   expect(execution.serverWebpackConfig.toConfig()).toMatchSnapshot();

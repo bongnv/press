@@ -37,4 +37,4 @@ export async function dev(config: Config): Promise<void> {
   await execution.commands.dev.promise(execution);
 }
 
-export type { Config } from "./execution";
+export { Config, Execution, Plugin } from "./execution";

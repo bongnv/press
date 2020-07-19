@@ -1,6 +1,7 @@
 import type { Execution, Plugin, PluginOptions, Plugable } from "./execution";
 import corePlugin from "./plugins/core";
 import devServerPlugin from "./plugins/dev-server";
+import enhancersPlugin from "./plugins/enhancers";
 import staticGenPlugin from "./plugins/static-gen";
 
 type NormalizedPlugin = [Plugin, PluginOptions];
@@ -22,7 +23,12 @@ function normalizePlugin(plugin: Plugable): NormalizedPlugin {
 }
 
 export function applyPlugins(plugins: Plugable[], execution: Execution): void {
-  plugins.unshift(corePlugin, devServerPlugin, staticGenPlugin);
+  plugins.unshift(
+    corePlugin,
+    devServerPlugin,
+    enhancersPlugin,
+    staticGenPlugin,
+  );
 
   plugins
     .map((plugin: Plugable) => normalizePlugin(plugin))

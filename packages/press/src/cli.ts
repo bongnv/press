@@ -1,6 +1,7 @@
 import yargs from "yargs/yargs";
 import { Argv } from "yargs";
 import { dev, build } from "./press";
+import { loadConfig } from "./load-config";
 
 function cli(cwd?: string): Argv {
   const parser = yargs(undefined, cwd);
@@ -16,7 +17,7 @@ function cli(cwd?: string): Argv {
         // TODO: options
       });
     },
-    (argv) => dev(argv),
+    (argv) => dev(loadConfig(argv)),
   );
 
   parser.command(
@@ -27,7 +28,7 @@ function cli(cwd?: string): Argv {
         // TODO: options
       });
     },
-    (argv) => build(argv),
+    (argv) => build(loadConfig(argv)),
   );
 
   parser.demandCommand(1, "You need at least one command").help();

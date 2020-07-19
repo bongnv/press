@@ -1,34 +1,7 @@
-import path from "path";
-import type { Options } from "html-minifier";
+import type { Config } from "@bongnv/press-core";
 
-export interface Config {
-  baseDir: string;
-  outputDir: string;
-  isProd: boolean;
-  publicPath: string;
-  temporaryPath: string;
-  serverPath: string;
-  htmlMinifierOptions?: Options;
-  enhancers: string[];
-}
-
-export function defaultConfig(projectDir?: string): Config {
-  const baseDir = projectDir || path.resolve(process.cwd());
-  const temporaryPath = path.join(baseDir, ".press");
-  const serverPath = path.join(temporaryPath, "server");
-
+export function loadConfig(argv: any): Config {
   return {
-    baseDir,
-    outputDir: path.join(baseDir, "dist"),
-    isProd: process.env.NODE_ENV === "production",
-    publicPath: "/",
-    temporaryPath,
-    serverPath,
-    enhancers: [],
+    baseDir: "/",
   };
-}
-
-// loadConfig handles logic for preparing configuration including normalizing them..
-export function loadConfig(): Config {
-  return defaultConfig();
 }

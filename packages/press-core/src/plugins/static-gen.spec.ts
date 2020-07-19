@@ -3,10 +3,8 @@ import { mocked } from "ts-jest/utils";
 import { createBundleRenderer } from "vue-server-renderer";
 import type { BundleRenderer } from "vue-server-renderer";
 
-import { StaticGen } from "./static-gen";
+import staticGenPlugin from "./static-gen";
 import { Execution } from "../execution";
-import type { Config } from "../load-config";
-import { defaultConfig } from "../load-config";
 
 jest.mock("fs-extra");
 jest.mock("vue-server-renderer");
@@ -17,11 +15,9 @@ beforeEach(() => {
 });
 
 test("Core should apply generate hook properly", async () => {
-  const config: Config = defaultConfig();
-  const plugin = new StaticGen();
-  const execution = new Execution(config);
+  const execution = new Execution({ baseDir: "/ " });
   execution.urlsToRender = ["/"];
-  plugin.apply(execution);
+  staticGenPlugin(execution);
 
   const mockReadJSON = mocked(<() => Promise<any>>readJSON);
   mockReadJSON.mockResolvedValueOnce({});

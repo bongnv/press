@@ -17,10 +17,7 @@ interface Context {
   execution: Execution;
 }
 
-function applyBaseConfig(
-  { execution }: Context,
-  webpackConfig: WebpackConfig,
-) {
+function applyBaseConfig({ execution }: Context, webpackConfig: WebpackConfig) {
   const { isProd } = execution;
   webpackConfig.mode(isProd ? "production" : "development");
 

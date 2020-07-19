@@ -2,6 +2,9 @@
 
 exports[`DevServer should apply configWebpack hooks properly 1`] = `
 Object {
+  "devServer": Object {
+    "historyApiFallback": true,
+  },
   "plugins": Array [
     HtmlWebpackPlugin {
       "assetJson": undefined,

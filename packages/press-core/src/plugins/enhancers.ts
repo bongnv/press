@@ -7,14 +7,18 @@ const PLUGIN_NAME = "EnhancersPlugin";
 
 interface Params {
   enhancers: string[];
-  vueAppDir: string;
+  enhancersLoaderPath: string;
   webpackConfig: WebpackConfig;
 }
 
-function configWebpack({ vueAppDir, enhancers, webpackConfig }: Params) {
+function configWebpack({
+  enhancersLoaderPath,
+  enhancers,
+  webpackConfig,
+}: Params) {
   webpackConfig.module
     .rule("compile-enhancers")
-    .test(path.join(vueAppDir, "enhancers.js"))
+    .test(enhancersLoaderPath)
     .use("val-loader")
     .loader("val-loader")
     .options({
@@ -22,21 +26,24 @@ function configWebpack({ vueAppDir, enhancers, webpackConfig }: Params) {
     });
 }
 
-export default function ({ hooks }: Execution) {
-  const vueAppDir = path.resolve(__dirname, "../../enhancers");
+export default function ({ hooks }: Execution): void {
+  const enhancersLoaderPath = path.resolve(
+    __dirname,
+    "../../vue-app/enhancers-loader.js",
+  );
 
   hooks.configWebpack.tap(
     PLUGIN_NAME,
     ({ enhancers, clientWebpackConfig, serverWebpackConfig }: Execution) => {
       configWebpack({
-        vueAppDir,
+        enhancersLoaderPath,
         enhancers,
         webpackConfig: clientWebpackConfig,
       });
       configWebpack({
-        vueAppDir,
+        enhancersLoaderPath,
         enhancers,
-        webpackConfig: serverWebpackConfig
+        webpackConfig: serverWebpackConfig,
       });
     },
   );

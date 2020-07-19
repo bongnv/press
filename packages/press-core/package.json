@@ -7,8 +7,7 @@
   "license": "MIT",
   "main": "lib/press-core.js",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib",
@@ -61,7 +60,6 @@
     "@types/tapable": "^1.0.6",
     "@types/webpack-dev-server": "^3.11.0",
     "@types/webpack-node-externals": "^1.7.1",
-    "@types/yargs": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^3.5.0",
     "eslint": "^7.4.0",

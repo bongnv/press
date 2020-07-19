@@ -23,6 +23,7 @@ function startDevServer(webpackConfig: WebpackConfig): Promise<void> {
 }
 
 function configWebpack(vueAppDir: string, webpackConfig: WebpackConfig): void {
+  webpackConfig.devServer.historyApiFallback(true);
   webpackConfig.plugin("html-webpack-plugin").use(
     new HTMLWebpackPlugin({
       template: path.join(vueAppDir, "index.dev.html"),

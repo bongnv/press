@@ -1,21 +1,17 @@
 {
-  "name": "@bongnv/press",
+  "name": "@bongnv/press-plugin-vue-pages",
   "version": "0.0.0",
-  "description": "CLI of press",
+  "description": "Generate pages from Vue files\"",
   "author": "Bong Nguyen <van.bong@grabtaxi.com>",
   "homepage": "https://github.com/bongnv/press#readme",
   "license": "MIT",
-  "main": "lib/press.js",
-  "bin": {
-    "press": "bin/press"
-  },
+  "main": "lib/index.js",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
-    "bin",
-    "lib"
+    "lib",
+    "vue-app"
   ],
   "publishConfig": {
     "access": "public"
@@ -32,17 +28,11 @@
     "test:updateSnapshots": "jest -u",
     "watch": "tsc -w"
   },
-  "dependencies": {
-    "@bongnv/press-core": "^0.0.0",
-    "@bongnv/press-plugin-vue-pages": "^0.0.0",
-    "yargs": "^15.4.0"
-  },
   "bugs": {
     "url": "https://github.com/bongnv/press/issues"
   },
   "devDependencies": {
     "@types/jest": "^26.0.3",
-    "@types/yargs": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^3.5.0",
     "eslint": "^7.4.0",
@@ -51,6 +41,11 @@
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.1",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "webpack-chain": "^6.5.0"
+  },
+  "dependencies": {
+    "@bongnv/press-core": "^0.0.0",
+    "glob": "^7.1.6"
   }
 }

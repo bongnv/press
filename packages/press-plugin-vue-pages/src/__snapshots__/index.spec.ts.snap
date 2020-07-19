@@ -5,12 +5,12 @@ Object {
   "module": Object {
     "rules": Array [
       Object {
-        "test": "/vue-app/enhancers-loader.js",
+        "test": "/vue-app/routes-loader.js",
         "use": Array [
           Object {
             "loader": "val-loader",
             "options": Object {
-              "enhancers": Array [],
+              "baseDir": "/",
             },
           },
         ],
@@ -25,12 +25,12 @@ Object {
   "module": Object {
     "rules": Array [
       Object {
-        "test": "/vue-app/enhancers-loader.js",
+        "test": "/vue-app/routes-loader.js",
         "use": Array [
           Object {
             "loader": "val-loader",
             "options": Object {
-              "enhancers": Array [],
+              "baseDir": "/",
             },
           },
         ],
